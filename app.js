@@ -8,16 +8,13 @@ for (let i = 0; i < SQUARES_NUMBER; i++) {
 const square = document.createElement('div')
 square.classList.add('square')
 
-square.addEventListener('mouseover', () => {
-    setColor(square)
-})
-square.addEventListener('mouseleave', () => {
-    removeColor(square)
-})
+square.addEventListener('mouseover', setColor)
+square.addEventListener('mouseleave', removeColor)
 board.append(square)
 }
 
-function setColor(element) {
+function setColor(event) {
+    const element = event.target
     let RandomColor = 'rgb(' + colorValue() + ',' + colorValue() + ',' +    colorValue() + ')';
     const color = RandomColor;
     element.style.backgroundColor = color;
@@ -29,7 +26,8 @@ function setColor(element) {
 
 }
 
-function removeColor(element) {
+function removeColor(event) {
+    const element = event.target
     element.style.backgroundColor = '';
     element.style.boxShadow = ``;
     header.style.textShadow = ``;
